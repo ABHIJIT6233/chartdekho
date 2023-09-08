@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script> 
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'/>
+    
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img class="menu-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMg7VcAc6WkebF912z4ABmiZPlt1Y_TpXbg&usqp=CAU" >
+            <img src="data:image/png;base64,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" class="logo">
+        </div>
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <input type="text" placeholder="Search">
+                <img src="images/search.png" alt="" class="search-icon">
+            </div>
+            <!-- <img src="images/voice-search.png" alt="" > -->
+            <a href="" class="mic-icon"><i class="fa-solid fa-microphone"></i></a>
+        </div>
+        <div class="nav-right flex-div">
+            <img src="images/upload.png">
+            <img src="images/cast.png" class="cast-icon">
+            <img src="images/notification.png">
+            <img src="images/usa.jpg" class="user-icon">
+        </div>
+    </nav>
+    <!-- ------------------- side bar------------ -->
+    <div class="sidebar">
+        <div class="shortcut-links">
+            <a href="https://www.youtube.com/"><img src="images/home.png" alt=""><p>Home</p></a>
+            <a href=""><img src="images/explore.png" alt=""><p>Explore</p></a>
+            <a href=""><img src="images/subscriprion.png" alt=""><p>Subscription</p></a>
+            <a href=""><img src="images/library.png" alt=""><p>Library</p></a>
+            <a href=""><img src="images/history.png" alt=""><p>History</p></a>
+            <a href=""><img src="images/playlist.png" alt=""><p>Playlist</p></a>
+            <a href=""><img src="images/messages.png" alt=""><p>message</p></a>
+            <a href=""><img src="images/show-more.png" alt=""><p>show more</p></a>
+            <hr>
+        </div>
+        <div class="subscribed-list">
+            <h3>SUBSCRIBED</h3>
+            <a href=""><img src="images/usa.jpg" alt=""><p>The Artist</p></a>
+            <a href=""><img src="images/simon.png" alt=""><p>The Simon</p></a>
+            <a href=""><img src="images/tom.png" alt=""><p>The Tom</p></a>
+            <a href=""><img src="images/megan.png" alt=""><p>The Megan</p></a>
+            <a href=""><img src="images/cameron.png" alt=""><p>The cameron</p></a>
+        </div>
+    </div>
+
+    <!-- -------------  main  ----------- -->
+
+    <div class="container">
+        <div class="banner">
+            <img src="images/banner.png" alt="">
+        </div>
+    <div class="list-container">
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail1.png" class="thumbnail"></i></a>
+            <!-- <div class="icon-overlay"><i class="fa-regular fa-clock"></i></div> -->
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/pic (4).jpg" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail2.png" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail3.png" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail4.png" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail5.png" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail6.png" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail7.png" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/thumbnail8.png" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/pic (1).jpg" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/pic (2).jpg" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="images/pic (3).jpg" class="thumbnail"></a>
+            <div class="flex-div">
+               <img src="images/usa.jpg" alt="">
+                <div class="vid-info">
+                   <a href="">Best channel to learn the coding that help you to be web devloper</a>
+                  <p>Easy Tutorials</p>
+                   <p>15k Views &bull; 2 days</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <script src="JS/script.js"></script>
+</body>
+</html> 
